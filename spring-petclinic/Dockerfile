@@ -14,8 +14,8 @@ RUN apt-get update -y && \
 
 # Move into the application directory and build it through Maven.
 WORKDIR /app/spring-petclinic
-RUN mvn spring-javaformat:apply && \
-    mvn clean package -DskipTests=true
+RUN mvn -T $(nproc) spring-javaformat:apply && \
+    mvn -T $(nproc) clean package -DskipTests=true
 
 ###
 # Ok, the application has been built. Now we build a container
